@@ -14,15 +14,18 @@ namespace RailwaySystem.API.Model
         [Required(ErrorMessage = "ID will be automatically generated")]
         public int BankCredId { get; set; }
 
-        [ForeignKey("User")]
         [Required(ErrorMessage = "Enter the User ID")]
-        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public int? UserId { get; set; }
 
         [Column(TypeName = "varchar(50)")]
         [Required(ErrorMessage = "The Bank name cannot be empty.")]
         public string BankName { get; set; }
 
+        [MinLength(4, ErrorMessage = "Atleast 4 digits")]
+        [MaxLength(11, ErrorMessage = "Atleast 11 digits")]
         [Required(ErrorMessage = "Enter the last four digits of you card number.")]
-        public int CardNumber { get; set; }
+        public string CardNumber { get; set; }
+        public bool isActive { get; set; }
     }
 }

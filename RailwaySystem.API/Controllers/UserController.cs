@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RailwaySystem.API.Model;
-using RailwaySystem.API.Service;
+using RailwaySystem.API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

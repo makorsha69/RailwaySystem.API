@@ -1,15 +1,15 @@
 ﻿using RailwaySystem.API.Model;
+using RailwaySystem.API.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RailwaySystem.API.Repository;
 
-namespace RailwaySystem.API.Service
+namespace RailwaySystem.API.Services
 {
     public class UserServices
     {
-       private IUserRepo _userRepository;
+        private IUserRepo _userRepository;
         public UserServices(IUserRepo userRepository)
         {
             _userRepository = userRepository;

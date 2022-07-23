@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RailwaySystem.API.Service
+namespace RailwaySystem.API.Services
 {
     public class BankCredServices
     {
@@ -14,13 +14,17 @@ namespace RailwaySystem.API.Service
         {
             _bankcredRepository = bankcredRepository;
         }
-        public string SaveBankCred(BankCred Seat)
+        public string DeactBankCred(int BankCredId)
         {
-            return _bankcredRepository.SaveBankCred(Seat);
+            return _bankcredRepository.DeactBankCred(BankCredId);
         }
-        public string UpdateBankCred(BankCred seat)
+        public string SaveBankCred(BankCred bankCred)
         {
-            return _bankcredRepository.UpdateBankCred(seat);
+            return _bankcredRepository.SaveBankCred(bankCred);
+        }
+        public string UpdateBankCred(BankCred bankCred)
+        {
+            return _bankcredRepository.UpdateBankCred(bankCred);
         }
         public BankCred GetBankCred(int BankCredId)
         {

@@ -13,9 +13,8 @@ namespace RailwaySystem.API.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required(ErrorMessage = "ID will be automatically generated")]
         public int TransactionId { get; set; }
-
-        [ForeignKey("Booking")]
-        public int BookingId { get; set; }
+        [ForeignKey("BookingId")]
+        public int? BookingId { get; set; }
 
 
         [Required(ErrorMessage = "The email cannot be empty.")]
@@ -25,5 +24,6 @@ namespace RailwaySystem.API.Model
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "The train status cannot be empty.")]
         public string TransactionStatus { get; set; }
+        public ICollection<Tickets> tickets { get; set; }
     }
 }

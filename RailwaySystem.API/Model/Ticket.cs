@@ -1,11 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RailwaySystem.API.Model
 {
-    public class Ticket
+    public class Tickets
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int TicketId { get; set; }
+        [ForeignKey("UserId")]
+        public int? UserId { get; set; }
+
+
+        [ForeignKey("TransId")]
+        public int? TransId { get; set; }
+
+
+
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "DD/MM/YYYY Format")]
+        public DateTime Date { get; set; }
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "hh:mm Format")]
+        public DateTime Time { get; set; }
+        public bool isActive { get; set; }
     }
 }

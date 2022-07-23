@@ -10,6 +10,7 @@ namespace RailwaySystem.API.Repository
     {
         public string SaveBankCred(BankCred bankcred);
         public string UpdateBankCred(BankCred bankcred);
+        public string DeactBankCred(int BankCredId);
         BankCred GetBankCred(int BankCredId);
         List<BankCred> GetAllBankCreds();
     }

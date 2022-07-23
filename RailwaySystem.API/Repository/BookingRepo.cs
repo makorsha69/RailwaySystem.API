@@ -8,110 +8,96 @@ using System.Threading.Tasks;
 
 namespace RailwaySystem.API.Repository
 {
-    public class BankCredRepo : IBankCredRepo
+    public class BookingRepo : IBookingRepo
     {
         private TrainDbContext _trainDb;
-
-        public BankCredRepo(TrainDbContext trainDb)
+        public BookingRepo(TrainDbContext trainDb)
         {
             _trainDb = trainDb;
         }
-        public string DeactBankCred(int BankCredId)
+        public string DeactBooking(int BookingId)
         {
             string Result = string.Empty;
-            BankCred delete;
-
+            Booking delete = null;
             try
             {
-                delete = _trainDb.bankCred.Find(BankCredId);
-
+                delete = _trainDb.bookings.Find(BookingId);
                 if (delete != null)
                 {
-                    //_trainDb.trainsDb.Remove(delete);
                     delete.isActive = false;
                     _trainDb.SaveChanges();
                     Result = "200";
                 }
+
             }
             catch (Exception ex)
             {
                 Result = "400";
             }
-            finally
-            {
-                delete = null;
-            }
             return Result;
+
         }
-        #region GetAllBankCred
-        public List<BankCred> GetAllBankCreds()
+
+        public List<Booking> GetAllBookings()
         {
-            List<BankCred> bankcred = null;
+            string Result = string.Empty;
+            List<Booking> bookings = null;
             try
             {
-                bankcred = _trainDb.bankCred.ToList();
+                bookings = _trainDb.bookings.ToList();
+
             }
             catch (Exception ex)
             {
 
             }
-            return bankcred;
-
+            return bookings;
         }
-        #endregion
 
-
-        #region GetBankCred
-        public BankCred GetBankCred(int BankCredId)
+        public Booking GetBooking(int BookingId)
         {
-
-            BankCred bankcred = null;
+            Booking booking = null;
             try
             {
-                bankcred = _trainDb.bankCred.Find(BankCredId);
-                return bankcred;
+                booking = _trainDb.bookings.Find(BookingId);
             }
             catch (Exception ex)
             {
 
             }
-            return bankcred;
+            return booking;
         }
-        #endregion
 
-        #region SaveBankCred
-        public string SaveBankCred(BankCred bankcred)
+        public string SaveBooking(Booking booking)
         {
+            string stCode = string.Empty;
             try
             {
-
-                _trainDb.bankCred.Add(bankcred);
+                _trainDb.bookings.Add(booking);
                 _trainDb.SaveChanges();
+                stCode = "200";
             }
             catch (Exception ex)
             {
-
+                stCode = "400";
             }
-
-            return "Saved";
+            return stCode;
         }
-        #endregion
 
-        #region UpdateBankCred
-        public string UpdateBankCred(BankCred bankcred)
+        public string UpdateBooking(Booking booking)
         {
+            string stCode = string.Empty;
             try
             {
-                _trainDb.Entry(bankcred).State = EntityState.Modified;
+                _trainDb.Entry(booking).State = EntityState.Modified;
                 _trainDb.SaveChanges();
+                stCode = "200";
             }
-            catch (Exception ex)
+            catch
             {
-
+                stCode = "400";
             }
-
-            return "Updated";
+            return stCode;
         }
-        #endregion
     }
 }

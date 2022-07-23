@@ -1,10 +1,11 @@
-﻿using RailwaySystem.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RailwaySystem.API.Data;
 using RailwaySystem.API.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace RailwaySystem.API.Repository
 {
@@ -23,7 +24,7 @@ namespace RailwaySystem.API.Repository
             List<User> users = null;
             try
             {
-                users = _trainDb.user.ToList();
+                users = _trainDb.users.ToList();
             }
             catch (Exception ex)
             {
@@ -42,7 +43,8 @@ namespace RailwaySystem.API.Repository
             User user = null;
             try
             {
-                user = _trainDb.user.Find(UserId);
+                user = _trainDb.users.Find(UserId);
+
             }
             catch (Exception ex)
             {
@@ -57,7 +59,8 @@ namespace RailwaySystem.API.Repository
         {
             try
             {
-                _trainDb.user.Add(user);
+                _trainDb.users.Add(user);
+
                 _trainDb.SaveChanges();
             }
             catch (Exception ex)
@@ -84,7 +87,5 @@ namespace RailwaySystem.API.Repository
             return "Updated";
         }
         #endregion
-
-
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RailwaySystem.API.Data;
 using RailwaySystem.API.Repository;
-using RailwaySystem.API.Service;
+using RailwaySystem.API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +30,7 @@ namespace RailwaySystem.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TrainDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+
             services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<UserServices, UserServices>();
             services.AddTransient<ITransactionRepo, TransactionRepo>();
@@ -38,6 +39,19 @@ namespace RailwaySystem.API
             services.AddTransient<SeatServices, SeatServices>();
             services.AddTransient<IBankCredRepo, BankCredRepo>();
             services.AddTransient<BankCredServices, BankCredServices>();
+            services.AddTransient<ITicketRepo, TicketRepo>();
+            services.AddTransient<TicketServices, TicketServices>();
+            services.AddTransient<IBookingRepo, BookingRepo>();
+            services.AddTransient<BookingServices, BookingServices>();
+            services.AddTransient<IQuotaRepo, QuotaRepo>();
+            services.AddTransient<QuotaServices, QuotaServices>();
+            services.AddTransient<IRouteRepo, RouteRepo>();
+            services.AddTransient<RouteServices, RouteServices>();
+            services.AddTransient<ITicketRepo, TicketRepo>();
+            services.AddTransient<TicketServices, TicketServices>();
+            services.AddTransient<ITrainRepo, TrainRepo>();
+            services.AddTransient<TrainServices, TrainServices>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

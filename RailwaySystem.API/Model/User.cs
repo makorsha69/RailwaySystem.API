@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RailwaySystem.API.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,8 +27,8 @@ namespace RailwaySystem.API.Model
         [Required(ErrorMessage = "The addressname cannot be empty.")]
         public string Address { get; set; }
 
-        [MinLength(10, ErrorMessage = "Phone number cannot be less than 10 digits.")]
-        [MaxLength(10, ErrorMessage = "Phone number cannot be more than 10 digits.")]
+
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid phone no.")]
         public string Mobile { get; set; }
 
         [Column(TypeName = "varchar(25)")]
@@ -38,5 +39,7 @@ namespace RailwaySystem.API.Model
         public string Role { get; set; }
 
         public bool IsActive { get; set; }
+        public ICollection<BankCred> bankCreds { get; set; }
+        public ICollection<Tickets> tickets { get; set; }
     }
 }
