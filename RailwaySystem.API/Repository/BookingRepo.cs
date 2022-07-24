@@ -63,7 +63,7 @@ namespace RailwaySystem.API.Repository
             }
             catch (Exception ex)
             {
-
+               
             }
             return booking;
         }
@@ -93,7 +93,7 @@ namespace RailwaySystem.API.Repository
                 _trainDb.SaveChanges();
                 stCode = "200";
             }
-            catch
+            catch(Exception ex)
             {
                 stCode = "400";
             }

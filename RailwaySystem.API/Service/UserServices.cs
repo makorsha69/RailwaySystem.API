@@ -26,6 +26,10 @@ namespace RailwaySystem.API.Services
         {
             return _userRepository.GetUser(UserId);
         }
+        public User GetUserbyName(string Name)
+        {
+            return _userRepository.GetUserbyName(Name);
+        }
         public List<User> GetAllUser()
         {
             return _userRepository.GetAllUser();

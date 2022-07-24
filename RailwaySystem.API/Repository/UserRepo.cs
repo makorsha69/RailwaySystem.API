@@ -54,6 +54,21 @@ namespace RailwaySystem.API.Repository
         }
         #endregion
 
+        public User GetUserbyName(string Name)
+        {
+            User user = null;
+            try
+            {
+                user = _trainDb.users.Find(Name);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return user;
+        }
+
         #region SaveUser
         public string SaveUser(User user)
         {
