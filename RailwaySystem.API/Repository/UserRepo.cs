@@ -59,7 +59,7 @@ namespace RailwaySystem.API.Repository
             User user = null;
             try
             {
-                user = _trainDb.users.Find(Name);
+                user = _trainDb.users.FirstOrDefault(q => q.Name == Name);
 
             }
             catch (Exception ex)

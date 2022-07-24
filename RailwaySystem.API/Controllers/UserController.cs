@@ -37,7 +37,7 @@ namespace RailwaySystem.API.Controllers
         {
             return Ok(_userServices.GetUser(UserId));
         }
-        [HttpGet("GetUserbyEmail")]
+        [HttpGet("GetUserbyName")]
         public IActionResult GetUserbyName(string Name)
         {
             return Ok( _userServices.GetUserbyName(Name));
