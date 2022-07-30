@@ -143,5 +143,28 @@ namespace RailwaySystem.API.Repository
 
         }
         #endregion
+
+        #region SearchTrain
+        public List<Train> SearchTrain(string ArrivalStation, string DepartureStation, DateTime date)
+        {
+            List<Train> trains = null;
+            var searchTrain = _trainDb.trains.Where(q => q.ArrivalStation == ArrivalStation && q.DepartureStation == DepartureStation && q.ArrivalDate == date);
+            try
+            {
+                if (searchTrain != null)
+                {
+
+                    trains = searchTrain.ToList<Train>();
+                    return trains;
+            }
+        }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return trains;
+
+        }
+        #endregion
     }
 }

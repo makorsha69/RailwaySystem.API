@@ -11,7 +11,7 @@ namespace RailwaySystem.API.Model
     {
         [Column(TypeName = "varchar(50)")]
         [Required(ErrorMessage = "The email cannot be empty.")]
-        public string Name { get; set; }
+        public string Email { get; set; }
 
         [Column(TypeName = "varchar(50)")]
         [Required(ErrorMessage = "The password cannot be empty.")]

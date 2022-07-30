@@ -54,12 +54,13 @@ namespace RailwaySystem.API.Repository
         }
         #endregion
 
-        public User GetUserbyName(string Name)
+        #region GetUserbyEmail
+        public User GetUserbyEmail(string Email)
         {
             User user = null;
             try
             {
-                user = _trainDb.users.FirstOrDefault(q => q.Name == Name);
+                user = _trainDb.users.FirstOrDefault(q => q.Email == Email);
 
             }
             catch (Exception ex)
@@ -68,6 +69,7 @@ namespace RailwaySystem.API.Repository
             }
             return user;
         }
+        #endregion
 
         #region SaveUser
         public string SaveUser(User user)

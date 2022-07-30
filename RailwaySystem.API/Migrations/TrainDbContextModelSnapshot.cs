@@ -166,7 +166,12 @@ namespace RailwaySystem.API.Migrations
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TrainId")
+                        .HasColumnType("int");
+
                     b.HasKey("SeatId");
+
+                    b.HasIndex("TrainId");
 
                     b.ToTable("seat");
                 });
@@ -215,24 +220,30 @@ namespace RailwaySystem.API.Migrations
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ArrivalStation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArrivalTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DepartureDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DepartureTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DepartureStation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DepartureTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(25)");
 
+                    b.Property<double>("distance")
+                        .HasColumnType("float");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
-
-                    b.Property<int>("total")
-                        .HasColumnType("int");
 
                     b.HasKey("TrainId");
 
@@ -323,6 +334,13 @@ namespace RailwaySystem.API.Migrations
                         .HasForeignKey("TrainId");
                 });
 
+            modelBuilder.Entity("RailwaySystem.API.Model.Seat", b =>
+                {
+                    b.HasOne("RailwaySystem.API.Model.Train", null)
+                        .WithMany("seats")
+                        .HasForeignKey("TrainId");
+                });
+
             modelBuilder.Entity("RailwaySystem.API.Model.Tickets", b =>
                 {
                     b.HasOne("RailwaySystem.API.Model.Transaction", null)
@@ -354,6 +372,8 @@ namespace RailwaySystem.API.Migrations
             modelBuilder.Entity("RailwaySystem.API.Model.Train", b =>
                 {
                     b.Navigation("routes");
+
+                    b.Navigation("seats");
                 });
 
             modelBuilder.Entity("RailwaySystem.API.Model.Transaction", b =>

@@ -37,31 +37,35 @@ namespace RailwaySystem.API.Controllers
         {
             return Ok(_userServices.GetUser(UserId));
         }
-        [HttpGet("GetUserbyName")]
-        public IActionResult GetUserbyName(string Name)
+        [HttpGet("GetUserbyEmail")]
+        public IActionResult GetUserbyEmail(string Email)
         {
-            return Ok( _userServices.GetUserbyName(Name));
+            return Ok( _userServices.GetUserbyEmail(Email));
         }
         [HttpGet("GetAllUser()")]
         public List<User> GetAllUser()
         {
             return _userServices.GetAllUser();
         }
+
+        #region LoginController
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var user =_userServices.GetUserbyName(model.Name);
-            if(user!=null && model.Password == user.Password)
+            var user = _userServices.GetUserbyEmail(model.Email);
+            if (user != null && model.Password == user.Password)
             {
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserId", user.UserId.ToString())
+                        new Claim("UserId", user.UserId.ToString()),
+                        new Claim("Name", user.Name.ToString())
+
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(15),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("saumyadip@007")), SecurityAlgorithms.HmacSha256Signature)
+                    Expires = DateTime.UtcNow.AddMinutes(50),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YEg6R89Mlv21JbwO")), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
@@ -72,6 +76,8 @@ namespace RailwaySystem.API.Controllers
             {
                 return BadRequest(new { message = "Email or Password is incorrect." });
             }
+            #endregion
+
         }
     }
 }

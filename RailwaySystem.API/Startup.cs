@@ -55,7 +55,7 @@ namespace RailwaySystem.API
                             "https://localhost:44389",
                             "https://localhost:4200"
                         },
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("saumyadip@007"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YEg6R89Mlv21JbwO"))
                     };
                 });
 
@@ -99,7 +99,6 @@ namespace RailwaySystem.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
-            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
