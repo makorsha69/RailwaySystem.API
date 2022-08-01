@@ -79,6 +79,8 @@ namespace RailwaySystem.API.Repository
                 _trainDb.users.Add(user);
 
                 _trainDb.SaveChanges();
+
+              
             }
             catch (Exception ex)
             {
