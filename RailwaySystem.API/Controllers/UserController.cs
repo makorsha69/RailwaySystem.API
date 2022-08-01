@@ -82,7 +82,6 @@ namespace RailwaySystem.API.Controllers
         }
         #endregion
 
-
         #region EmailService
         [HttpPost("EmailService")]
 
@@ -90,14 +89,14 @@ namespace RailwaySystem.API.Controllers
         {
             string body = "Hello, " + name + ".Your email id " + reciever + " is succesfully registered with LOCOMOTIVE Railway Services";
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("services.railway5@gmail.com"));
+            email.From.Add(MailboxAddress.Parse("system.railwayinfo@gmail.com"));
             email.To.Add(MailboxAddress.Parse(reciever));
             email.Subject = "Test WEBAPI Email Sending Service";
             email.Body = new TextPart(TextFormat.Plain) { Text = body };
             
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate("services.railway5@gmail.com", "kckvyvzhrcmlcgci");
+            smtp.Authenticate("system.railwayinfo@gmail.com ", "ruxidhbnmxoyoynz");
             smtp.Send(email);
             smtp.Disconnect(true);
 
