@@ -29,7 +29,9 @@ namespace RailwaySystem.API.Model
 
 
         public string Status { get; set; }
+
         public int SeatNum { get; set; }
+      
         [Column(TypeName = "varchar(25)")]
         [MinLength(5, ErrorMessage = "Name can not be less than 5")]
         public string PName { get; set; }

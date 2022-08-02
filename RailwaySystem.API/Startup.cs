@@ -77,8 +77,6 @@ namespace RailwaySystem.API
             services.AddTransient<BookingServices, BookingServices>();
             services.AddTransient<IQuotaRepo, QuotaRepo>();
             services.AddTransient<QuotaServices, QuotaServices>();
-            services.AddTransient<IRouteRepo, RouteRepo>();
-            services.AddTransient<RouteServices, RouteServices>();
             services.AddTransient<ITicketRepo, TicketRepo>();
             services.AddTransient<TicketServices, TicketServices>();
             services.AddTransient<ITrainRepo, TrainRepo>();

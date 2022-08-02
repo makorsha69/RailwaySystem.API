@@ -14,7 +14,6 @@ namespace RailwaySystem.API.Data
 
         }
         public DbSet<Train> trains { get; set; }
-        public DbSet<Route> route { get; set; }
         public DbSet<Quota> quotas { get; set; }
         public DbSet<Booking> bookings { get; set; }
         public DbSet<Tickets> tickets { get; set; }

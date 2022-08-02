@@ -40,7 +40,7 @@ namespace RailwaySystem.API.Model
 
         public double distance { get; set; }
         public bool isActive { get; set; }
-        public ICollection<Route> routes { get; set; }
+        
         //public ICollection<Booking> bookings { get; set; }
         public ICollection<Seat> seats { get; set; }
 

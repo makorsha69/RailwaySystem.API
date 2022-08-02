@@ -26,6 +26,8 @@ namespace RailwaySystem.API.Model
         [MaxLength(11, ErrorMessage = "Atleast 11 digits")]
         [Required(ErrorMessage = "Enter the last four digits of you card number.")]
         public string CardNumber { get; set; }
+
+
         public bool isActive { get; set; }
     }
 }

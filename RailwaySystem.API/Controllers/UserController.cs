@@ -83,7 +83,7 @@ namespace RailwaySystem.API.Controllers
         #endregion
 
         #region EmailService
-        [HttpPost("EmailService")]
+        [HttpGet("EmailService")]
 
         public IActionResult SendEmail(string name,string reciever)
         {
@@ -100,7 +100,7 @@ namespace RailwaySystem.API.Controllers
             smtp.Send(email);
             smtp.Disconnect(true);
 
-            return Ok();
+            return Ok("200");
         }
         #endregion
 
