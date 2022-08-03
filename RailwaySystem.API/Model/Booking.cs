@@ -18,7 +18,7 @@ namespace RailwaySystem.API.Model
 
 
         [ForeignKey("QuotaId")]
-        public int? QuotaId { get; set; }
+        public int? PassengerId { get; set; }
 
 
         public string Classes { get; set; }
@@ -32,13 +32,6 @@ namespace RailwaySystem.API.Model
 
         public int SeatNum { get; set; }
       
-        [Column(TypeName = "varchar(25)")]
-        [MinLength(5, ErrorMessage = "Name can not be less than 5")]
-        public string PName { get; set; }
-        [Required(ErrorMessage = "Age can not be empty")]
-        public int Age { get; set; }
-        [Required(ErrorMessage = "Gender can not be empty")]
-        public string Gender { get; set; }
         public bool isActive { get; set; }
         public ICollection<Transaction> transactions { get; set; }
     }

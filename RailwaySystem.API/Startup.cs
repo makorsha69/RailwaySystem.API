@@ -81,6 +81,8 @@ namespace RailwaySystem.API
             services.AddTransient<TicketServices, TicketServices>();
             services.AddTransient<ITrainRepo, TrainRepo>();
             services.AddTransient<TrainServices, TrainServices>();
+            services.AddTransient<IPassengerRepo, PassengerRepo>();
+            services.AddTransient<PassengerServices, PassengerServices>();
             #endregion
 
             services.AddCors();

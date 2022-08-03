@@ -45,9 +45,9 @@ namespace RailwaySystem.API.Controllers
             return _bookingS.GetAllBookings();
         }
         [HttpGet("CalculateFare")]
-        public IActionResult CalculateFare(int TrainId, string Class)
+        public IActionResult CalculateFare(int TrainId, string Class, int PassengerId)
         {
-            return Ok(_bookingS.CalculateFare(TrainId,Class));
+            return Ok(_bookingS.CalculateFare(TrainId,Class,PassengerId));
         }
 
     }
