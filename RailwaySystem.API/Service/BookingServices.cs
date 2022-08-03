@@ -34,5 +34,9 @@ namespace RailwaySystem.API.Services
         {
             return _Ibooking.GetAllBookings();
         }
+        public double CalculateFare(int TrainId, string Class)
+        {
+            return _Ibooking.CalculateFare(TrainId,Class);
+        }
     }
 }

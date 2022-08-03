@@ -94,6 +94,30 @@ namespace RailwaySystem.API.Migrations
                     b.ToTable("bookings");
                 });
 
+            modelBuilder.Entity("RailwaySystem.API.Model.Passenger", b =>
+                {
+                    b.Property<int>("PassengerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PassengerId");
+
+                    b.ToTable("passenger");
+                });
+
             modelBuilder.Entity("RailwaySystem.API.Model.Quota", b =>
                 {
                     b.Property<int>("QuotaId")
@@ -115,38 +139,6 @@ namespace RailwaySystem.API.Migrations
                     b.ToTable("quotas");
                 });
 
-            modelBuilder.Entity("RailwaySystem.API.Model.Route", b =>
-                {
-                    b.Property<int>("RouteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ArrivalStation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DepartureStation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TrainId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("distance")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("RouteId");
-
-                    b.HasIndex("TrainId");
-
-                    b.ToTable("route");
-                });
-
             modelBuilder.Entity("RailwaySystem.API.Model.Seat", b =>
                 {
                     b.Property<int>("SeatId")
@@ -166,7 +158,7 @@ namespace RailwaySystem.API.Migrations
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrainId")
+                    b.Property<int>("TrainId")
                         .HasColumnType("int");
 
                     b.HasKey("SeatId");
@@ -327,18 +319,13 @@ namespace RailwaySystem.API.Migrations
                         .HasForeignKey("QuotaId");
                 });
 
-            modelBuilder.Entity("RailwaySystem.API.Model.Route", b =>
-                {
-                    b.HasOne("RailwaySystem.API.Model.Train", null)
-                        .WithMany("routes")
-                        .HasForeignKey("TrainId");
-                });
-
             modelBuilder.Entity("RailwaySystem.API.Model.Seat", b =>
                 {
                     b.HasOne("RailwaySystem.API.Model.Train", null)
                         .WithMany("seats")
-                        .HasForeignKey("TrainId");
+                        .HasForeignKey("TrainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RailwaySystem.API.Model.Tickets", b =>
@@ -371,8 +358,6 @@ namespace RailwaySystem.API.Migrations
 
             modelBuilder.Entity("RailwaySystem.API.Model.Train", b =>
                 {
-                    b.Navigation("routes");
-
                     b.Navigation("seats");
                 });
 

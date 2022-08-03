@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RailwaySystem.API.Data;
 using RailwaySystem.API.Model;
 using System;
@@ -124,5 +125,28 @@ namespace RailwaySystem.API.Repository
         }
 
         #endregion
+
+
+
+        public double CalculateFare(int TrainId, string Class,int PassengerId)
+        {
+            double fare = 0.00;
+            var train = _trainDb.trains.Find(TrainId);
+            int distance = (int)train.distance;
+            if (Class == "FirstAC")
+            {
+                fare = ((8 * distance) + 250 + 70) * 0.18;
+            }
+            if (Class == "SecondAC")
+            {
+                fare = ((6 * distance) + 150 + 50) * 0.18;
+            }
+            if (Class == "Sleeper")
+            {
+                fare = ((4 * distance) + 50 + 30) * 0.18;
+            }
+            return fare;
+        }
+
     }
 }

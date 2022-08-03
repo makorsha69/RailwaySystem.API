@@ -160,6 +160,7 @@ namespace RailwaySystem.API.Repository
                               DepartureDate = t.DepartureDate,
                               DepartureStation = t.DepartureStation,
                               ArrivalStation = t.ArrivalStation,
+                              distance = t.distance,
                               FirstAC = s.FirstAC,
                               SecondAC = s.SecondAC,
                               Sleeper = s.Sleeper,
