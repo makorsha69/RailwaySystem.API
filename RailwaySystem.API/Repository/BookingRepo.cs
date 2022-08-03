@@ -15,6 +15,9 @@ namespace RailwaySystem.API.Repository
         {
             _trainDb = trainDb;
         }
+
+        #region DeactivateBookinh
+
         public string DeactBooking(int BookingId)
         {
             string Result = string.Empty;
@@ -38,6 +41,11 @@ namespace RailwaySystem.API.Repository
 
         }
 
+        #endregion
+
+
+        #region GetAllBookings
+
         public List<Booking> GetAllBookings()
         {
             string Result = string.Empty;
@@ -54,6 +62,11 @@ namespace RailwaySystem.API.Repository
             return bookings;
         }
 
+        #endregion
+
+
+        #region GetBooking
+
         public Booking GetBooking(int BookingId)
         {
             Booking booking = null;
@@ -63,10 +76,15 @@ namespace RailwaySystem.API.Repository
             }
             catch (Exception ex)
             {
-               
+
             }
             return booking;
         }
+
+        #endregion
+
+
+        #region SaveBooking
 
         public string SaveBooking(Booking booking)
         {
@@ -84,6 +102,11 @@ namespace RailwaySystem.API.Repository
             return stCode;
         }
 
+        #endregion
+
+
+        #region UpdateBooking
+
         public string UpdateBooking(Booking booking)
         {
             string stCode = string.Empty;
@@ -93,11 +116,13 @@ namespace RailwaySystem.API.Repository
                 _trainDb.SaveChanges();
                 stCode = "200";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 stCode = "400";
             }
             return stCode;
         }
+
+        #endregion
     }
 }

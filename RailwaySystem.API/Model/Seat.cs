@@ -14,6 +14,9 @@ namespace RailwaySystem.API.Model
         [Required(ErrorMessage = "ID will be automatically generated")]
         public int SeatId { get; set; }
 
+        [ForeignKey("TrainId")]
+        public int TrainId { get; set; }
+
         [Required(ErrorMessage = "Enter the number of seats for First AC")]
         public int FirstAC { get; set; }
 

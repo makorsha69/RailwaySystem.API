@@ -21,5 +21,6 @@ namespace RailwaySystem.API.Data
         public DbSet<Seat> seat { get; set; }
         public DbSet<BankCred> bankCred { get; set; }
         public DbSet<Transaction> transaction { get; set; }
+        public DbSet<Passenger> passenger { get; set; }
     }
 }
