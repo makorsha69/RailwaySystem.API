@@ -127,8 +127,8 @@ namespace RailwaySystem.API.Repository
         #endregion
 
 
-
-        public double CalculateFare(int TrainId, string Class,int PassengerId)
+        #region CalculateFare
+        public double CalculateFare(int TrainId, string Class, int PassengerId)
         {
             double fare = 0.00;
             var train = _trainDb.trains.Find(TrainId);
@@ -146,11 +146,13 @@ namespace RailwaySystem.API.Repository
                 fare = ((4 * distance) + 50 + 30) * 0.18;
             }
             Random rnd = new Random();
-            int seat = rnd.Next();
-            _trainDb.bookings.Add(new Booking { TrainId = TrainId, Classes = Class, Status = "Pending", Date=DateTime.Now, PassengerId=PassengerId, SeatNum=seat});
+            int seat = rnd.Next(1, 72);
+            _trainDb.bookings.Add(new Booking { TrainId = TrainId, Classes = Class, Status = "Pending", Date = DateTime.Now, PassengerId = PassengerId, SeatNum = seat });
             _trainDb.SaveChanges();
             return fare;
         }
+
+        #endregion
 
     }
 }

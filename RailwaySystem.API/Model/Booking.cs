@@ -17,11 +17,14 @@ namespace RailwaySystem.API.Model
         public int? TrainId { get; set; }
 
 
-        [ForeignKey("QuotaId")]
+        [ForeignKey("PassengerId")]
         public int? PassengerId { get; set; }
 
 
         public string Classes { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
+        public double Fare { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "MM/DD/YYYY Format")]
