@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -102,6 +103,22 @@ namespace RailwaySystem.API.Controllers
 
             return Ok("200");
         }
+        #endregion
+
+        #region GetUserProfile
+
+        [HttpGet("GetUserProfile")]
+        [Authorize]
+
+        public  string GetUserProfile()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserId").Value;
+            var user =  _userServices.GetUser(int.Parse(userId));
+            return user.Name; 
+               
+         
+        }
+
         #endregion
 
     }
