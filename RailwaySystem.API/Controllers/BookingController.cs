@@ -45,15 +45,24 @@ namespace RailwaySystem.API.Controllers
             return _bookingS.GetAllBookings();
         }
         [HttpGet("CalculateFare")]
-        public IActionResult CalculateFare(int TrainId, string Class, int PassengerId)
+        public IActionResult CalculateFare(int TrainId, string Class, int PassengerId, int UserId)
         {
-            return Ok(_bookingS.CalculateFare(TrainId,Class,PassengerId));
+            return Ok(_bookingS.CalculateFare(TrainId,Class,PassengerId,UserId));
         }
         [HttpPatch("ConfirmBooking")]
         public IActionResult ConfirmBooking(int BookingId)
         {
             return Ok(_bookingS.ConfirmBooking(BookingId));
         }
-
+        [HttpGet("GetBookingHistory")]
+        public IActionResult GetBookingByUserID(int UserId)
+        {
+            return Ok(_bookingS.GetBookingByUserID(UserId));
+        }
+        [HttpGet("GetBookingId")]
+        public IActionResult GetBookingId(string fare)
+        {
+            return Ok(_bookingS.GetBookingId(fare));
+        }
     }
 }

@@ -20,6 +20,8 @@ namespace RailwaySystem.API.Model
         [ForeignKey("PassengerId")]
         public int? PassengerId { get; set; }
 
+        public int UserId { get; set; }
+
 
         public string Classes { get; set; }
 
