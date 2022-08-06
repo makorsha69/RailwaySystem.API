@@ -24,7 +24,7 @@ namespace RailwaySystem.API.Model
         public string Classes { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
-        public double Fare { get; set; }
+        public double fare { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "MM/DD/YYYY Format")]

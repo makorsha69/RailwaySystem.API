@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RailwaySystem.API.Data;
 
 namespace RailwaySystem.API.Migrations
 {
     [DbContext(typeof(TrainDbContext))]
-    partial class TrainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220805174914_Fare")]
+    partial class Fare
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,6 +64,9 @@ namespace RailwaySystem.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("Fare")
+                        .HasColumnType("decimal(10,2)");
+
                     b.Property<int?>("PassengerId")
                         .HasColumnType("int");
 
@@ -76,9 +81,6 @@ namespace RailwaySystem.API.Migrations
 
                     b.Property<int?>("TrainId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("fare")
-                        .HasColumnType("decimal(10,2)");
 
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
@@ -99,9 +101,6 @@ namespace RailwaySystem.API.Migrations
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
-
-                    b.Property<string>("Class")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PName")
                         .HasColumnType("nvarchar(max)");

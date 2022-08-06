@@ -14,7 +14,7 @@ namespace RailwaySystem.API.Repository
         {
             trainDb = _trainDb;
         }
-        public string AddPassenger(Passenger passenger)
+        public Passenger AddPassenger(Passenger passenger)
         {
             string stCode = string.Empty;
             try
@@ -29,7 +29,7 @@ namespace RailwaySystem.API.Repository
                 //return ex.Message;
                 stCode = "400";
             }
-            return stCode;
+            return passenger;
         }
 
         public string DeletePassenger(int PassengerId)

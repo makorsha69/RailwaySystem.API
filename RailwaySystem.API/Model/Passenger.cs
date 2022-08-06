@@ -21,6 +21,7 @@ namespace RailwaySystem.API.Model
 
         public string gender { get; set; }
 
+        public string Class { get; set; }
 
     }
 }

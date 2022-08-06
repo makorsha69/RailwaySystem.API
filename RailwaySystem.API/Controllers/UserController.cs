@@ -110,13 +110,11 @@ namespace RailwaySystem.API.Controllers
         [HttpGet("GetUserProfile")]
         [Authorize]
 
-        public  string GetUserProfile()
+        public  User GetUserProfile()
         {
             string userId = User.Claims.First(c => c.Type == "UserId").Value;
-            var user =  _userServices.GetUser(int.Parse(userId));
-            return user.Name; 
-               
-         
+            User user =  _userServices.GetUser(int.Parse(userId));
+            return user; 
         }
 
         #endregion

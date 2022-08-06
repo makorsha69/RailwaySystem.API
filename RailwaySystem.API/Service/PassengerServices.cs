@@ -14,7 +14,7 @@ namespace RailwaySystem.API.Services
         {
             passenger = _passenger;
         }
-        public string AddPassenger(Passenger Passenger)
+        public Passenger AddPassenger(Passenger Passenger)
         {
             return passenger.AddPassenger(Passenger);
         }

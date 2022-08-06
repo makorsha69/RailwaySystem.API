@@ -147,7 +147,7 @@ namespace RailwaySystem.API.Repository
             }
             Random rnd = new Random();
             int seat = rnd.Next(1, 72);
-            _trainDb.bookings.Add(new Booking { TrainId = TrainId, Classes = Class, Status = "Pending", Date = DateTime.Now, PassengerId = PassengerId, SeatNum = seat });
+            _trainDb.bookings.Add(new Booking { TrainId = TrainId, Classes = Class, Status = "Pending", Date = DateTime.Now, PassengerId = PassengerId, SeatNum = seat, fare=fare });
             _trainDb.SaveChanges();
             return fare;
         }
