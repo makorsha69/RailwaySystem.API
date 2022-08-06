@@ -14,5 +14,6 @@ namespace RailwaySystem.API.Repository
         Booking GetBooking(int BookingId);
         List<Booking> GetAllBookings();
         public double CalculateFare(int TrainId, string Class, int PassengerId);
+        public Booking ConfirmBooking(int BookingId);
     }
 }

@@ -154,5 +154,33 @@ namespace RailwaySystem.API.Repository
 
         #endregion
 
+
+        #region ConfirmBooking
+        public Booking ConfirmBooking(int BookingId)
+        {
+            string Result = string.Empty;
+            Booking confirm = null;
+
+            try
+            {
+                confirm = _trainDb.bookings.Find(BookingId);
+                if (confirm != null)
+                {
+                    confirm.Status = "CONFIRM";
+                    _trainDb.transaction.Add(new Transaction { BookingId = BookingId, TransactionStatus = "Success", Fare = confirm.fare });
+                    _trainDb.SaveChanges();
+                    Result = "200";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Result = "400";
+            }
+            return confirm;
+
+        }
+        #endregion
+
     }
 }
