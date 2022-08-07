@@ -16,7 +16,8 @@ namespace RailwaySystem.API.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     PName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    gender = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Class = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +44,7 @@ namespace RailwaySystem.API.Migrations
                 columns: table => new
                 {
                     TrainId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "10000, 1"),
                     Name = table.Column<string>(type: "varchar(25)", nullable: false),
                     ArrivalTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartureTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -83,17 +84,17 @@ namespace RailwaySystem.API.Migrations
                 columns: table => new
                 {
                     BookingId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "700000, 1"),
                     TrainId = table.Column<int>(type: "int", nullable: true),
-                    QuotaId = table.Column<int>(type: "int", nullable: true),
+                    PassengerId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     Classes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    fare = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeatNum = table.Column<int>(type: "int", nullable: false),
-                    PName = table.Column<string>(type: "varchar(25)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
+                    QuotaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,7 +157,7 @@ namespace RailwaySystem.API.Migrations
                 columns: table => new
                 {
                     TransactionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "50000, 1"),
                     BookingId = table.Column<int>(type: "int", nullable: true),
                     Fare = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     TransactionStatus = table.Column<string>(type: "varchar(20)", nullable: false)

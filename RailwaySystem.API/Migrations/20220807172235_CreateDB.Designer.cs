@@ -10,8 +10,8 @@ using RailwaySystem.API.Data;
 namespace RailwaySystem.API.Migrations
 {
     [DbContext(typeof(TrainDbContext))]
-    [Migration("20220803142802_PassengerId")]
-    partial class PassengerId
+    [Migration("20220807172235_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,6 +79,12 @@ namespace RailwaySystem.API.Migrations
                     b.Property<int?>("TrainId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("fare")
+                        .HasColumnType("decimal(10,2)");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
@@ -98,6 +104,9 @@ namespace RailwaySystem.API.Migrations
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
+
+                    b.Property<string>("Class")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PName")
                         .HasColumnType("nvarchar(max)");
