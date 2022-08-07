@@ -104,18 +104,18 @@ namespace RailwaySystem.API.Repository
         public string SaveTrain(Train train)
         {
             string stCode = string.Empty;
-            //try
-            //{
+            try
+            {
             _trainDb.trains.Add(train);
             _trainDb.SaveChanges();
 
             stCode = "200";
-            //}
-            //catch (Exception ex)
-            //{
-            //    return ex.Message;
-            //    stCode = "400";
-            //}
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+                stCode = "400";
+            }
             return stCode;
         }
         #endregion

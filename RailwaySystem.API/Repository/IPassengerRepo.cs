@@ -13,5 +13,6 @@ namespace RailwaySystem.API.Repository
         public string DeletePassenger(int PassengerId);
         public Passenger GetPassenger(int PassengerId);
         public List<Passenger> GetAllPassengers();
+        public IEnumerable<Report> GetReport(int TrainId);
     }
 }
