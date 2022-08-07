@@ -49,7 +49,7 @@ namespace RailwaySystem.API.Controllers
         {
             return Ok(_bookingS.CalculateFare(TrainId,Class,PassengerId,UserId));
         }
-        [HttpPatch("ConfirmBooking")]
+        [HttpGet("ConfirmBooking")]
         public IActionResult ConfirmBooking(int BookingId)
         {
             return Ok(_bookingS.ConfirmBooking(BookingId));
