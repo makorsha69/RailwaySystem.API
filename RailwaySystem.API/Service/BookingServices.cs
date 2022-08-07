@@ -46,9 +46,9 @@ namespace RailwaySystem.API.Services
         {
             return _Ibooking.GetBookingByUserID(UserId);
         }
-        public int GetBookingId(string fare)
+        public int GetBookingId(int PassengerId)
         {
-            return _Ibooking.GetBookingId(fare);
+            return _Ibooking.GetBookingId(PassengerId);
         }
     }
 }

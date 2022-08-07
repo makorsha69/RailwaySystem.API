@@ -200,10 +200,9 @@ namespace RailwaySystem.API.Repository
 
         #region GetBookingID
 
-        public int GetBookingId(string fare)
+        public int GetBookingId(int PassengerId)
         {
-            double f = Convert.ToDouble(fare);
-            Booking booking = _trainDb.bookings.FirstOrDefault(q => q.fare == f);
+            Booking booking = _trainDb.bookings.FirstOrDefault(q => q.PassengerId == PassengerId);
             int BookingId = booking.BookingId;
             return BookingId;
 

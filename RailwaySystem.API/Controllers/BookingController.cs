@@ -60,9 +60,9 @@ namespace RailwaySystem.API.Controllers
             return Ok(_bookingS.GetBookingByUserID(UserId));
         }
         [HttpGet("GetBookingId")]
-        public IActionResult GetBookingId(string fare)
+        public IActionResult GetBookingId(int PassengerId)
         {
-            return Ok(_bookingS.GetBookingId(fare));
+            return Ok(_bookingS.GetBookingId(PassengerId));
         }
     }
 }
