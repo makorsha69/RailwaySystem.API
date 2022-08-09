@@ -88,11 +88,11 @@ namespace RailwaySystem.API.Controllers
 
         public IActionResult SendEmail(string name,string reciever)
         {
-            string body = "Hello, " + name + ".Your email id " + reciever + " is succesfully registered with LOCOMOTIVE Railway Services";
+            string body = "Dear Sir/Ma'am, \n\n Hello " + name + ".Your email id " + reciever + " is succesfully registered with LOCOMOTIVE Railway Services \n\n Regards,\n Locomotive Railway Services Ltd.";
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("system.railwayinfo@gmail.com"));
             email.To.Add(MailboxAddress.Parse(reciever));
-            email.Subject = "Test WEBAPI Email Sending Service";
+            email.Subject = "Registration comfirmation mail.";
             email.Body = new TextPart(TextFormat.Plain) { Text = body };
             
             using var smtp = new SmtpClient();
