@@ -10,23 +10,10 @@ namespace RailwaySystem.API.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TicketId { get; set; }
 
+        public int PassengerId { get; set; }
 
-        [ForeignKey("UserId")]
-        public int? UserId { get; set; }
+        public int BookingId { get; set; }
 
-
-        [ForeignKey("TransId")]
-        public int? TransId { get; set; }
-
-
-        [DataType(DataType.Date)]
-        [Required(ErrorMessage = "DD/MM/YYYY Format")]
-        public DateTime Date { get; set; }
-
-        [DataType(DataType.Date)]
-        [Required(ErrorMessage = "hh:mm Format")]
-        public DateTime Time { get; set; }
-
-        public bool isActive { get; set; }
+        public int TrainId { get; set; }
     }
 }

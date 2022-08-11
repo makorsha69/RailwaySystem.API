@@ -38,5 +38,9 @@ namespace RailwaySystem.API.Services
         {
             return passenger.GetReport(TrainId);
         }
+        public IEnumerable<Report> GetReportStat(int TrainId, string Status)
+        {
+            return passenger.GetReportStat(TrainId, Status);
+        }
     }
 }

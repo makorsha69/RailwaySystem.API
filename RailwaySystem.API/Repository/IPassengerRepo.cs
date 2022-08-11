@@ -14,5 +14,6 @@ namespace RailwaySystem.API.Repository
         public Passenger GetPassenger(int PassengerId);
         public List<Passenger> GetAllPassengers();
         public IEnumerable<Report> GetReport(int TrainId);
+        public IEnumerable<Report> GetReportStat(int TrainId, string Status);
     }
 }

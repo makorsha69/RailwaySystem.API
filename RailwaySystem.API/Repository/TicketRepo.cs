@@ -15,42 +15,7 @@ namespace RailwaySystem.API.Repository
         {
             _TicketDb = TicketDbContext;
         }
-        #region DeleteTicket
-        /// <summary>
-        /// Deactivates the Ticket when this fuction is invoked
-        /// </summary>
-        /// <param name="TicketId"></param>
-        /// <returns>If the TicketId is present then isActive is changed to false</returns>
-        public string DeactTicket(int TicketId)
-        {
-
-            string Result = string.Empty;
-            Tickets delete;
-
-            try
-            {
-                delete = _TicketDb.tickets.Find(TicketId);
-
-                if (delete != null)
-                {
-                    //_TicketDb.TicketsDb.Remove(delete);
-                    delete.isActive = false;
-                    _TicketDb.SaveChanges();
-                    Result = "200";
-                }
-            }
-            catch (Exception ex)
-            {
-                Result = "400";
-            }
-            finally
-            {
-                delete = null;
-            }
-            return Result;
-        }
-        #endregion
-
+              
         #region GetAllTickets
         /// <summary>
         /// When the function is invoked we get the list of all Tickets 
@@ -94,31 +59,6 @@ namespace RailwaySystem.API.Repository
         }
         #endregion
 
-        #region AddTicket
-        /// <summary>
-        /// When this function is invoked we can Add a Ticket
-        /// </summary>
-        /// <param name="Ticket"></param>
-        /// <returns></returns>
-        public string SaveTicket(Tickets Ticket)
-        {
-            string stCode = string.Empty;
-            try
-            {
-                _TicketDb.tickets.Add(Ticket);
-                _TicketDb.SaveChanges();
-                stCode = "200";
-            }
-            catch (Exception ex)
-            {
-                stCode = "400";
-            }
-            return stCode;
-        }
-
-
-        #endregion
-
         #region UpdateTicket
         /// <summary>
         /// When this function is invoked we will be able to Update Ticket details
@@ -141,6 +81,73 @@ namespace RailwaySystem.API.Repository
             return stCode;
 
         }
+        #endregion
+
+        #region GetTicket
+        /// <summary>
+        /// When this function is invocked we get the Tickets by Id
+        /// </summary>
+        /// <param name="TicketId"></param>
+        /// <returns>Finds the Id of the Ticket</returns>
+        public IEnumerable<TicketModel> GetTicket(int PassengerId, int BookingId, int TrainId)
+        {
+
+            List<TicketModel> Result;
+
+            Result = (from p in _TicketDb.passenger
+                      join b in _TicketDb.bookings on p.PassengerId equals b.PassengerId
+                      join t in _TicketDb.trains on b.TrainId equals t.TrainId
+                      select new TicketModel
+                      {
+                          TrainId = t.TrainId,
+                          Name = t.Name,
+                          ArrivalTime = t.ArrivalTime,
+                          DepartureTime = t.DepartureTime,
+                          ArrivalDate = t.ArrivalDate,
+                          DepartureDate = t.DepartureDate,
+                          ArrivalStation = t.ArrivalStation,
+                          DepartureStation = t.DepartureStation,
+                          BookingId = b.BookingId,
+                          fare = b.fare,
+                          Status = b.Status,
+                          SeatNum = b.SeatNum,
+                          PassengerId = p.PassengerId,
+                          PName = p.PName,
+                          Age = p.Age,
+                          gender = p.gender,
+                          Class = p.Class,
+                      }).Where(q => q.PassengerId == PassengerId && q.BookingId == BookingId && q.TrainId == TrainId).ToList();
+
+
+
+            return Result;
+        }
+        #endregion
+
+        #region AddTicket
+        /// <summary>
+        /// When this function is invoked we can Add a Ticket
+        /// </summary>
+        /// <param name="Ticket"></param>
+        /// <returns></returns>
+        public string SaveTicket(int PassengerId, int BookingId, int TrainId)
+        {
+            string stCode = string.Empty;
+            try
+            {
+                _TicketDb.tickets.Add(new Tickets { TrainId = TrainId, PassengerId = PassengerId, BookingId = BookingId });
+
+                _TicketDb.SaveChanges();
+                stCode = "200";
+            }
+            catch (Exception ex)
+            {
+                stCode = "400";
+            }
+            return stCode;
+        }
+
+
         #endregion
     }
 }
