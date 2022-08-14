@@ -19,19 +19,36 @@ namespace RailwaySystem.API.Repository
 
         #region DeactivateBookinh
 
-        public string DeactBooking(int BookingId)
+        public string DeactBooking(int BookingId, int TrainId)
         {
             string Result = string.Empty;
             Booking delete = null;
+
             try
             {
+                Seat seat = _trainDb.seat.FirstOrDefault(q => q.TrainId == TrainId);
                 delete = _trainDb.bookings.Find(BookingId);
-                if (delete != null)
+                if (delete != null && delete.Status != "CANCELLED")
                 {
-                    delete.isActive = false;
+
+                    delete.Status = "CANCELLED";
+                    if (delete.Classes == "FirstAC")
+                    {
+                        seat.FirstAC++;
+                    }
+                    if (delete.Classes == "SecondAC")
+                    {
+                        seat.SecondAC++;
+                    }
+                    if (delete.Classes == "Sleeper")
+                    {
+                        seat.Sleeper++;
+                    }
+
                     _trainDb.SaveChanges();
                     Result = "200";
                 }
+
 
             }
             catch (Exception ex)
@@ -197,6 +214,7 @@ namespace RailwaySystem.API.Repository
             return booking;
         }
         #endregion
+
 
         #region GetBookingID
 
