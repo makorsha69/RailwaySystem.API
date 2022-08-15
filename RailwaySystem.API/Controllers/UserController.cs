@@ -68,7 +68,7 @@ namespace RailwaySystem.API.Controllers
                         new Claim("Name", user.Name.ToString())
 
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(10),
+                    Expires = DateTime.UtcNow.AddMinutes(60),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YEg6R89Mlv21JbwO")), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();

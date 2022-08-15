@@ -35,14 +35,17 @@ namespace RailwaySystem.API.Repository
                     if (delete.Classes == "FirstAC")
                     {
                         seat.FirstAC++;
+                        seat.Total++;
                     }
                     if (delete.Classes == "SecondAC")
                     {
                         seat.SecondAC++;
+                        seat.Total++;
                     }
                     if (delete.Classes == "Sleeper")
                     {
                         seat.Sleeper++;
+                        seat.Total++;
                     }
 
                     _trainDb.SaveChanges();
@@ -156,16 +159,19 @@ namespace RailwaySystem.API.Repository
             {
                 fare = ((8 * distance) + 250 + 70) * 0.18;
                 seat.FirstAC = seat.FirstAC - 1;
+                seat.Total = seat.Total - 1;
             }
             if (Class == "SecondAC")
             {
                 fare = ((6 * distance) + 150 + 50) * 0.18;
                 seat.SecondAC = seat.SecondAC - 1;
+                seat.Total = seat.Total - 1;
             }
             if (Class == "Sleeper")
             {
                 fare = ((4 * distance) + 50 + 30) * 0.18;
                 seat.Sleeper = seat.Sleeper - 1;
+                seat.Total = seat.Total - 1;
             }
             Random rnd = new Random();
             int seatNum = rnd.Next(1, 72);
